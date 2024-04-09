@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace MyUploader.Context
+namespace FileManager.Api.Context
 {
     public class FileManagerDbContextFactory : IDesignTimeDbContextFactory<FileManagerDbContext>
     {

@@ -1,0 +1,13 @@
+﻿@page 
+@using WebApplication1.Pages.Document
+@model UploadModel
+@{
+}
+<h4 class="text-center">Upload Page</h4>
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <label>Upload Your File</label>
+        <input type="file" class="form-control" asp-for="UploadFile" />
+        <input type="submit" class="btn btn-success" title="Upload" />
+    </form>
+</div>

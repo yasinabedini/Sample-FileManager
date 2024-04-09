@@ -1,4 +1,4 @@
-﻿namespace MyUploader.Models
+﻿namespace FileManager.Api.Models
 {
     public class Document
     {

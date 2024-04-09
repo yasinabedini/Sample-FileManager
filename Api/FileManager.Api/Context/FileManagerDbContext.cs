@@ -1,8 +1,7 @@
-﻿
+﻿using FileManager.Api.Models;
 using Microsoft.EntityFrameworkCore;
-using MyUploader.Models;
 
-namespace MyUploader.Context
+namespace FileManager.Api.Context
 {
     public class FileManagerDbContext : DbContext
     {

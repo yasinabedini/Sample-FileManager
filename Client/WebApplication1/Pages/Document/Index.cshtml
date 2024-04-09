@@ -1,0 +1,29 @@
+﻿@page
+@using WebApplication1.Pages.Document
+@model IndexModel
+@{
+}
+
+<h2>File List</h2>
+
+<table class="table table-striped">
+    <tr>
+        <td>Name</td>
+        <td>ContentType</td>
+        <td>Length</td>
+        <td>Extention</td>
+        <td></td>
+    </tr>
+    @foreach (var file in Model.DocList)
+    {
+        <tr>
+            <td>@file.FileName</td>
+            <td>@file.ContentType</td>
+            <td>@file.Length</td>
+            <td>@file.Extention</td>
+            <td>
+                <a href="/Document/DownLoad/@file.Id" class="btn btn-primary">DownLoad</a>
+            </td>
+        </tr>
+    }
+</table>

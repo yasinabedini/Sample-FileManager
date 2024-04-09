@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using MyUploader.Context;
-using MyUploader.Models;
+﻿using FileManager.Api.Context;
+using FileManager.Api.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace FileManager.Api.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class FileController : Controller
     {
         private readonly FileManagerDbContext _context;
@@ -23,7 +25,7 @@ namespace FileManager.Api.Controllers
             return Ok(JsonSerializer.Serialize(files));
         }
 
-        [HttpGet("Download")]
+        [HttpGet("Download/{id}")]        
         public IActionResult Download(Guid id)
         {
             var FindDoc = _context.Documents.Find(id);
@@ -32,20 +34,21 @@ namespace FileManager.Api.Controllers
         }
 
         [HttpPost("Upload")]
-        public IActionResult Upload(IFormFile uploadFile)
+        [Produces("image/jpeg")]    
+        public IActionResult Upload(IFormFile file)
         {
             Document myDoc = new Document
             {
-                FileName = uploadFile.FileName,
-                ContentType = uploadFile.ContentType,
-                Length = (int)uploadFile.Length,
-                Extention = Path.GetExtension(uploadFile.FileName),
+                FileName = file.FileName,
+                ContentType = file.ContentType,
+                Length = (int)file.Length,
+                Extention = Path.GetExtension(file.FileName),
                 Data = null
             };
 
             using var stream = new MemoryStream();
 
-            uploadFile.CopyTo(stream);
+            file.CopyTo(stream);
             stream.Position = 0;
 
             myDoc.Data = stream.ToArray();
